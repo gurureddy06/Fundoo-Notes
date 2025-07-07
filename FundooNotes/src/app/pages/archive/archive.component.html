@@ -1,0 +1,11 @@
+<div [class.container]="viewType === 'grid'" [class.list]="viewType === 'list'">
+  <app-notes-card
+    *ngFor="let note of archiveNotes"
+    [title]="note.title"
+    [description]="note.description"
+    [viewType]="viewType"
+    [color]="note.color"
+    [isArchived]="note.isArchived"
+    [_id]="note.id"
+  ></app-notes-card>
+</div>
