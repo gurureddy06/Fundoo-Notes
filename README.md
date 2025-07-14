@@ -1,5 +1,6 @@
 # FundooNotes Application
 
+
 ## 🚀 What is FundooNotes?
 
 Fundoo Notes is a powerful note-taking application inspired by Google Keep. Built with **Angular**, it provides a clean, responsive UI and useful features like pinning, archiving, color customization, and more.
