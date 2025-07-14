@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core'; // Already partially imported
 import { ViewTypeService } from 'src/app/services/neededInfo_Service/view-type.service';
+
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -8,10 +10,32 @@ import { ViewTypeService } from 'src/app/services/neededInfo_Service/view-type.s
 export class DashboardComponent {
   showFiller = false;
   viewType = 'grid';
-  constructor(private viewService: ViewTypeService) {}
   viewHover = false;
   refreshHover = false;
   settingsHover = false;
+  selectedItem: string = '';
+
+  // 👇 Add these for the avatar dropdown
+  isDropdownOpen = false;
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  logout() {
+    console.log('User logged out');
+    this.isDropdownOpen = false;
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleClickOutside(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.profile-menu')) {
+      this.isDropdownOpen = false;
+    }
+  }
+
+  constructor(private viewService: ViewTypeService) {}
 
   viewHoverChange(value: boolean) {
     this.viewHover = value;
@@ -32,13 +56,10 @@ export class DashboardComponent {
       this.viewService.setViewType('grid');
     }
   }
-  selectedItem: string = '';
   onItemSelected(item: string) {
     this.selectedItem = item;
     console.log('Selected item:', item);
   }
-
-  // Handle filler state from sidebar
   onFillerStateChanged(state: boolean) {
     this.showFiller = state;
   }

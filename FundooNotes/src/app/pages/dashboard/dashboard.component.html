@@ -16,10 +16,10 @@
     <mat-icon class="search-icon menuicon material-symbols-outlined"
       >search</mat-icon
     >
-    <input type="text" class="inpcontainer" placeholder="Search" />
+    <input type="text" class="inpcontainer" placeholder="Search"/>
   </div>
   <span class="example-spacer"></span>
-  <button
+  <button  
     mat-icon-button
     class="example-icon favorite-icon material-symbols-outlined"
     aria-label="Example icon-button with heart icon"
@@ -41,11 +41,11 @@
     (mouseleave)="viewHoverChange(false)"
   >
     <mat-icon
-      class="menuicon material-symbols-outlined weightIncrease dis"
+      class="menuicon material-symbols-outlined we ightIncrease dis"
       [fontIcon]="viewType === 'grid' ? 'view_agenda' : 'grid_view'"
       [class.hover]="viewHover"
     ></mat-icon>
-  </button>
+  </button>  
   <button
     mat-icon-button
     class="example-icon favorite-icon material-symbols-outlined"
@@ -68,13 +68,20 @@
     <mat-icon class="material-symbols-outlined">apps</mat-icon>
   </button>
 
-  <div class="avatarcontainer">
+  <div class="profile-menu">
+  <div class="avatarcontainer" (click)="toggleDropdown()">
     <img
-      src="https://api.dicebear.com/9.x/notionists-neutral/svg"
-      alt=""
+      src="../../../assets/profile.png"
+      alt="Profile"
       class="avatar"
     />
   </div>
+
+  <div class="dropdown" *ngIf="isDropdownOpen">
+    <button (click)="logout()">Logout</button>
+  </div>
+</div>
+
 </mat-toolbar>
 <app-sidebar
   [showFiller]="showFiller"
@@ -83,3 +90,4 @@
   (fillerStateChanged)="onFillerStateChanged($event)"
   >></app-sidebar
 >
+

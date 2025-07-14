@@ -1,9 +1,8 @@
 <div class="maincontainer" [class.maincontainerlist]="viewType === 'list'">
-
-  <div *ngIf="pinedNotes.length > 0" [class.mcontainer]="viewType === 'list'">
-    <div class="pinhighlight" [class.pinhighlighte]="viewType === 'list'">
-      PINNED
-    </div>
+  
+  <!-- Pinned Notes -->
+  <ng-container *ngIf="pinedNotes.length > 0">
+    <div class="pinhighlight" [class.pinhighlighte]="viewType === 'list'">PINNED</div>
     <div class="container" [class.list]="viewType === 'list'">
       <app-notes-card
         *ngFor="let note of pinedNotes"
@@ -12,26 +11,31 @@
         [viewType]="viewType"
         [color]="note.color"
         [_id]="note.id"
+        (archiveNote)="removeNote($event)"
+        (noteDeleted)="removeNote($event)"
       ></app-notes-card>
     </div>
-  </div>
-  <div *ngIf="userNotes.length > 0" [class.mcontainer]="viewType === 'list'">
+  </ng-container>
+
+  <!-- Regular Notes (Non-Pinned) -->
+  <ng-container *ngIf="userNotes.length > 0">
     <div class="container" [class.list]="viewType === 'list'">
       <app-notes-card
-        *ngFor="let note of userNotes.reverse()"
+        *ngFor="let note of userNotes.slice().reverse()"
         [title]="note.title"
         [description]="note.description"
         [viewType]="viewType"
         [color]="note.color"
         [_id]="note.id"
+        (archiveNote)="removeNote($event)"
+        (noteDeleted)="removeNote($event)"
       ></app-notes-card>
     </div>
-  </div>
+  </ng-container>
 
-  <div *ngIf="pinedNotes.length > 0" [class.mcontainer]="viewType === 'list'">
-    <div class="pinhighlight" [class.pinhighlighte]="viewType === 'list'">
-      OTHERS
-    </div>
+  <!-- Others Header + Non-Pinned Notes -->
+  <ng-container *ngIf="pinedNotes.length > 0 && nonPinedNotes.length > 0">
+    <div class="pinhighlight" [class.pinhighlighte]="viewType === 'list'">OTHERS</div>
     <div class="container" [class.list]="viewType === 'list'">
       <app-notes-card
         *ngFor="let note of nonPinedNotes"
@@ -40,7 +44,10 @@
         [viewType]="viewType"
         [color]="note.color"
         [_id]="note.id"
+        (archiveNote)="removeNote($event)"
+        (noteDeleted)="removeNote($event)"
       ></app-notes-card>
     </div>
-  </div>
+  </ng-container>
+
 </div>

@@ -5,35 +5,42 @@
     [style.background-color]="selectedColor"
     [class.addHeight]="showModal"
   >
+    <!-- Collapsed View -->
     <div class="searchcontainer" *ngIf="!showModal">
       <input
         type="text"
+        id="note-placeholder"
+        name="notePlaceholder"
         class="inpcontainer"
         placeholder="Take a note..."
         (focus)="toggleModal()"
       />
       <mat-icon
         aria-hidden="false"
-        aria-label="Example home icon"
+        aria-label="Check"
         fontIcon="check_box"
         class="boxclass material-symbols-outlined"
       ></mat-icon>
       <mat-icon
         aria-hidden="false"
-        aria-label="Example home icon"
+        aria-label="Brush"
         fontIcon="brush"
         class="brushclass material-symbols-outlined"
       ></mat-icon>
       <mat-icon
         aria-hidden="false"
-        aria-label="Example home icon"
+        aria-label="Image"
         fontIcon="image"
         class="imageclass material-symbols-outlined"
       ></mat-icon>
     </div>
+
+    <!-- Expanded View -->
     <div class="searchcontainer" *ngIf="showModal">
       <input
         type="text"
+        id="note-title"
+        name="noteTitle"
         class="inpcontainer remborder"
         formControlName="title"
         placeholder="Title"
@@ -41,36 +48,38 @@
       />
       <mat-icon
         aria-hidden="false"
-        aria-label="Example home icon"
+        aria-label="Pin"
         fontIcon="keep"
         class="pin material-symbols-outlined"
         [class.seltoggle]="pined"
         (click)="selectPin()"
       ></mat-icon>
     </div>
+
     <div class="searchcontainer" *ngIf="showModal">
       <input
         type="text"
+        id="note-description"
+        name="noteDescription" 
         class="inpcontainer remborder"
         placeholder="Take a note"
         formControlName="description"
         [style.background-color]="selectedColor"
       />
     </div>
+
     <div *ngIf="showModal" class="lastcontainer">
       <button mat-icon-button>
         <mat-icon
-          aria-hidden="false"
-          aria-label="Example home icon"
           fontIcon="format_letter_spacing_wide"
           class="material-symbols-outlined"
         ></mat-icon>
       </button>
+
+      <!-- Color Palette -->
       <div class="palletecontainer">
         <button mat-icon-button (click)="togglePalletModal()">
           <mat-icon
-            aria-hidden="false"
-            aria-label="Example home icon"
             fontIcon="palette"
             class="material-symbols-outlined"
           ></mat-icon>
@@ -91,64 +100,34 @@
         </div>
       </div>
 
+      <!-- Other toolbar icons -->
       <button mat-icon-button>
-        <mat-icon
-          aria-hidden="false"
-          aria-label="Example home icon"
-          fontIcon="notifications_active"
-          class="material-symbols-outlined"
-        ></mat-icon>
+        <mat-icon fontIcon="notifications_active" class="material-symbols-outlined"></mat-icon>
       </button>
       <button mat-icon-button>
-        <mat-icon
-          aria-hidden="false"
-          aria-label="Example home icon"
-          fontIcon="person_add"
-          class="material-symbols-outlined"
-        ></mat-icon>
+        <mat-icon fontIcon="person_add" class="material-symbols-outlined"></mat-icon>
       </button>
       <button mat-icon-button>
-        <mat-icon
-          aria-hidden="false"
-          aria-label="Example home icon"
-          fontIcon="image"
-          class="material-symbols-outlined"
-        ></mat-icon>
+        <mat-icon fontIcon="image" class="material-symbols-outlined"></mat-icon>
       </button>
       <button mat-icon-button (click)="selectArchive()">
         <mat-icon
-          aria-hidden="false"
-          aria-label="Example home icon"
           fontIcon="archive"
           [class.seltoggle]="archive"
           class="material-symbols-outlined"
         ></mat-icon>
       </button>
       <button mat-icon-button>
-        <mat-icon
-          aria-hidden="false"
-          aria-label="Example home icon"
-          fontIcon="more_vert"
-          class="material-symbols-outlined"
-        ></mat-icon>
+        <mat-icon fontIcon="more_vert" class="material-symbols-outlined"></mat-icon>
       </button>
       <button mat-icon-button>
-        <mat-icon
-          aria-hidden="false"
-          aria-label="Example home icon"
-          fontIcon="undo"
-          class="material-symbols-outlined"
-        ></mat-icon>
+        <mat-icon fontIcon="undo" class="material-symbols-outlined"></mat-icon>
       </button>
       <button mat-icon-button>
-        <mat-icon
-          class="material-symbols-outlined"
-          aria-hidden="false"
-          aria-label="Example home icon"
-          fontIcon="redo"
-          class="material-symbols-outlined"
-        ></mat-icon>
+        <mat-icon fontIcon="redo" class="material-symbols-outlined"></mat-icon>
       </button>
+
+      <!-- Close Button -->
       <div (click)="onSubmit()" class="closecontainer">close</div>
     </div>
   </div>

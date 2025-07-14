@@ -1,11 +1,12 @@
-<div [class.container]="viewType === 'grid'" [class.list]="viewType === 'list'">
-  <app-notes-card
-    *ngFor="let note of archiveNotes"
-    [title]="note.title"
-    [description]="note.description"
-    [viewType]="viewType"
-    [color]="note.color"
-    [isArchived]="note.isArchived"
-    [_id]="note.id"
-  ></app-notes-card>
-</div>
+<app-notes-card
+  *ngFor="let note of archivedNotes"
+  [title]="note.title"
+  [description]="note.description"
+  [viewType]="viewType"
+  [color]="note.color"
+  [isArchived]="note.isArchived"
+  [isDeleted]="note.isDeleted"
+  [_id]="note.id"
+  (archiveNote)="handleUnarchive($event)"
+  (noteDeleted)="handleDelete($event)"
+></app-notes-card>

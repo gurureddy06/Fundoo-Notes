@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NotesService } from 'src/app/services/notes_services/notes.service';
 import { ViewTypeService } from 'src/app/services/neededInfo_Service/view-type.service';
@@ -10,6 +10,8 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./inputcomp.component.css'],
 })
 export class InputcompComponent implements OnInit {
+  @Output() noteCreated = new EventEmitter<void>();
+
   ngOnInit(): void {
     this.viewVal = this.view.viewType$.subscribe((value) => {
       this.viewVal = value;
@@ -32,6 +34,7 @@ export class InputcompComponent implements OnInit {
     this.pined = !this.pined;
     console.log(this.pined);
   }
+  
   selectArchive() {
     this.archive = !this.archive;
     if (this.myForm.value.title && this.myForm.value.description) {
@@ -45,6 +48,7 @@ export class InputcompComponent implements OnInit {
           console.log('api response', res);
           this.showModal = false;
           this.router.navigate(['/dashboard/archive']);
+          this.noteCreated.emit();
         },
         error: (err) => {
           console.log('api response', err);
@@ -99,6 +103,7 @@ export class InputcompComponent implements OnInit {
         next: (res) => {
           console.log('api response', res);
           this.showModal = false;
+          this.noteCreated.emit();
         },
         error: (err) => {
           console.log('api response', err);
@@ -108,7 +113,7 @@ export class InputcompComponent implements OnInit {
       this.showModal = false;
     }
   }
-
+  
   toggleModal() {
     this.showModal = !this.showModal;
   }

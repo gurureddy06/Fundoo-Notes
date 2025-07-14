@@ -101,14 +101,15 @@
       ></mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>Delete note</button>
-      <button mat-menu-item>Add label</button>
-      <button mat-menu-item>Add drawing</button>
-      <button mat-menu-item>Make a copy</button>
-      <button mat-menu-item>Show tick boxes</button>
-      <button mat-menu-item>Copy to Google Docs</button>
-      <button mat-menu-item>Version history</button>
-    </mat-menu>
+  <button mat-menu-item (click)="deleteNote()">Delete note</button>
+  <button mat-menu-item>Add label</button>
+  <button mat-menu-item>Add drawing</button>
+  <button mat-menu-item>Make a copy</button>
+  <button mat-menu-item>Show tick boxes</button>
+  <button mat-menu-item>Copy to Google Docs</button>
+  <button mat-menu-item>Version history</button>
+</mat-menu>
+
     <!-- </button> -->
   </div>
 </div>

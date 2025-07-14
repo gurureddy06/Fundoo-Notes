@@ -50,17 +50,51 @@ input:focus {
 }
 .avatar {
   width: 30px;
+  height: 30px;
+  object-fit: cover;
 }
+
 .avatarcontainer {
   width: 30px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30px;
   border-radius: 50%;
-  border: 1px solid #666666;
+  border: 1px solid #666;
   overflow: hidden;
+  cursor: pointer;
 }
+
+.profile-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  border-radius: 4px;
+}
+
+.dropdown button {
+  padding: 8px 12px;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown button:hover {
+  background-color: #f0f0f0;
+}
+
 @media only screen and (max-width: 800px) {
   .searchcontainer {
     display: none;

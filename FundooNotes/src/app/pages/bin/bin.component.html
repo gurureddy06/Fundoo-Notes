@@ -1,1 +1,11 @@
-<p>bin works!</p>
+<div [class.container]="viewType === 'grid'" [class.list]="viewType === 'list'">
+  <app-notes-card
+    *ngFor="let note of binNotes"
+    [title]="note.title"
+    [description]="note.description"
+    [viewType]="viewType"
+    [color]="note.color"
+    [isDeleted]="note.isDeleted"
+    [_id]="note.id"
+  ></app-notes-card>
+</div>
